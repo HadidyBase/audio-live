@@ -1,6 +1,6 @@
 {
   "name": "@hadidyapp/audio-live",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Live streaming SDK for Hadidy Audio — LiveKit WebRTC, HLS playback, SSE session state",
   "type": "module",
   "module": "./dist/index.mjs",
@@ -20,7 +20,7 @@
     "lint": "tsc --noEmit",
     "prepublishOnly": "npm run build"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@hadidyapp/audio-sdk": "^0.1.0",
     "hls.js": "^1.5.0",
     "livekit-client": "^2.5.0"
