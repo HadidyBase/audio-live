@@ -5,7 +5,7 @@ Live streaming SDK for the Hadidy Audio platform. Covers session REST management
 ## Installation
 
 ```bash
-npm install @hadidyapp/audio-live @hadidyapp/audio-sdk livekit-client hls.js
+npm install @hadidyapp/audio-live
 ```
 
 ## Single-source broadcast (OBS → HLS)
