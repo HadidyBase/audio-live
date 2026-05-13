@@ -55,14 +55,14 @@ export class LiveRoom {
     if (!this.room) throw new Error('Not connected — call connect() first');
     const { createLocalAudioTrack } = await import('livekit-client');
     const track = await createLocalAudioTrack();
-    await this.room.localParticipant.publishTrack(track);
+    await this.room.localParticipant.publishTrack(track as any);
     return track;
   }
 
   async unpublishMicrophone(): Promise<void> {
     if (!this.room) return;
     for (const pub of this.room.localParticipant.audioTrackPublications.values()) {
-      await this.room.localParticipant.unpublishTrack(pub.track as LocalAudioTrack);
+      await this.room.localParticipant.unpublishTrack(pub.track as any);
     }
   }
 
