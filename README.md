@@ -15,14 +15,25 @@ import { LiveClient, SessionState } from '@hadidyapp/audio-live';
 
 const live = new LiveClient({ apiKey: 'had_live_...' });
 
+// WHIP (default) — OBS 30+ / Larix. ingest_url is the full endpoint.
 const session = await live.sessions.createSession({
   title: 'Friday Night Show',
+  ingest_protocol: 'whip',   // default; omit to use WHIP
   recording_enabled: true,
 });
 await live.sessions.startSession(session.id);
 
-console.log('RTMP URL:', session.ingest_url);
-console.log('Stream key:', session.stream_key);
+// WHIP: paste ingest_url directly into OBS WHIP server field
+if (session.ingest_protocol === 'whip') {
+  console.log('WHIP endpoint:', session.ingest_url);
+  // e.g. https://ingest.hadidy.com/{stream_key}/whip
+}
+
+// RTMPS: server and key are separate fields
+if (session.ingest_protocol === 'rtmp') {
+  console.log('RTMPS server:', session.ingest_url);  // rtmps://rtmps.hadidy.com:4936/
+  console.log('Stream key:  ', session.stream_key);
+}
 
 // Real-time listeners via SSE
 const state = new SessionState({ sessionId: session.id, apiKey: 'had_live_...' });
