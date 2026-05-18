@@ -1,6 +1,6 @@
 {
   "name": "@hadidyapp/audio-live",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Live streaming SDK for Hadidy Audio — LiveKit WebRTC, HLS playback, SSE session state",
   "type": "module",
   "module": "./dist/index.mjs",
