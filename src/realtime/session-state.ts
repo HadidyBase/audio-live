@@ -1,8 +1,11 @@
 import type { NowPlayingInfo } from '@hadidyapp/audio-sdk';
 
+type NextTrackInfo = Pick<NowPlayingInfo, 'title' | 'artist' | 'cover_url'>;
+
 type EventMap = {
   status: string;
   'now-playing': NowPlayingInfo | null;
+  'next-track': NextTrackInfo | null;
   listeners: number;
   error: Error;
 };
@@ -62,6 +65,15 @@ export class SessionState {
         this.emit('now-playing', data);
       } catch {
         this.emit('now-playing', null);
+      }
+    });
+
+    this.eventSource.addEventListener('next-track', (e) => {
+      try {
+        const data = JSON.parse((e as MessageEvent).data as string) as NextTrackInfo | null;
+        this.emit('next-track', data);
+      } catch {
+        this.emit('next-track', null);
       }
     });
 
